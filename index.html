@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Belajar Pajak Indonesia | Tutorial & Panduan Pajak</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            blue: '#0F3B8C', // Deep blue from header/logo
+                            light: '#1B56D2', // Lighter blue for hover/gradients
+                        },
+                        accent: {
+                            yellow: '#FFC107', // Yellow accent from text/buttons
+                            red: '#FF0000', // YouTube red
+                            green: '#28A745', // Success checkmarks
+                        },
+                        surface: {
+                            gray: '#F8F9FA', // Light gray backgrounds
+                            dark: '#0A192F', // Dark footer background
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'soft': '0 4px 20px rgba(0, 0, 0, 0.08)',
+                        'card': '0 2px 15px rgba(0, 0, 0, 0.05)',
+                        'float': '0 10px 30px rgba(15, 59, 140, 0.15)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        
+        /* Hero gradient background */
+        .bg-hero-gradient {
+            background: linear-gradient(135deg, #f0f4f8 0%, #e1eaf4 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Subtle geometric shapes in hero background */
+        .bg-hero-gradient::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 100%;
+            height: 200%;
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.4));
+            transform: rotate(-15deg);
+            z-index: 0;
+        }
+
+        /* Connecting lines for 'Skema Solusi' section */
+        .process-line {
+            position: absolute;
+            top: 50%;
+            left: calc(50% + 40px); /* Adjust based on circle size */
+            width: calc(100% - 80px); /* Adjust based on spacing */
+            height: 2px;
+            background: repeating-linear-gradient(to right, #cbd5e1 0, #cbd5e1 6px, transparent 6px, transparent 12px);
+            z-index: 0;
+            transform: translateY(-50%);
+        }
+        
+        /* Arrow head for process line */
+        .process-line::after {
+            content: '';
+            position: absolute;
+            right: -5px;
+            top: -4px;
+            width: 10px;
+            height: 10px;
+            border-top: 2px solid #94a3b8;
+            border-right: 2px solid #94a3b8;
+            transform: rotate(45deg);
+        }
+
+        @media (max-width: 768px) {
+            .process-line { display: none; }
+        }
+
+        /* Gradient text utility */
+        .text-gradient {
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Banner gradient */
+        .bg-banner {
+            background: linear-gradient(90deg, #0A192F 0%, #0F3B8C 100%);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 antialiased">
+
+    <nav class="fixed top-0 w-full bg-white shadow-sm z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <!-- Logo -->
+                <div class="flex items-center gap-3">
+                    <!-- Placeholder Logo matching reference shape -->
+                    <div class="w-12 h-12 bg-primary-blue rounded-lg flex items-center justify-center relative overflow-hidden">
+                        <div class="absolute inset-0 bg-accent-yellow rounded-lg transform translate-x-2 translate-y-2 mix-blend-multiply"></div>
+                        <div class="w-6 h-6 bg-white rounded-sm relative z-10"></div>
+                    </div>
+                    <div class="flex flex-col leading-tight">
+                        <span class="text-xl font-extrabold text-primary-blue tracking-tight">BELAJAR</span>
+                        <span class="text-xl font-extrabold text-accent-yellow tracking-tight">PAJAK</span>
+                        <span class="text-xs font-semibold text-primary-blue tracking-widest">INDONESIA</span>
+                    </div>
+                </div>
+
+                <!-- Desktop Links -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#" class="text-primary-blue font-semibold border-b-2 border-primary-blue py-1">Beranda</a>
+                    <a href="#" class="text-gray-600 hover:text-primary-blue font-medium py-1 transition-colors">Tentang</a>
+                    <a href="#" class="text-gray-600 hover:text-primary-blue font-medium py-1 transition-colors">Tutorial</a>
+                    <a href="#" class="text-gray-600 hover:text-primary-blue font-medium py-1 transition-colors">Layanan</a>
+                    <a href="#" class="text-gray-600 hover:text-primary-blue font-medium py-1 transition-colors">Artikel</a>
+                    <a href="#" class="text-gray-600 hover:text-primary-blue font-medium py-1 transition-colors">Kontak</a>
+                </div>
+
+                <!-- YouTube Button -->
+                <div class="hidden md:flex items-center">
+                    <a href="#" class="bg-accent-red hover:bg-red-700 text-white px-5 py-2 rounded-full font-bold flex items-center gap-2 transition-colors">
+                        <i class="fa-brands fa-youtube text-lg"></i> YouTube
+                    </a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button class="text-gray-600 hover:text-primary-blue focus:outline-none">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-20">
+        <section class="bg-hero-gradient pt-12 pb-24 px-4 sm:px-6 lg:px-8 relative">
+            <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
+                
+                <!-- Hero Text & CTA -->
+                <div class="flex flex-col items-start pt-10">
+                    <h1 class="text-5xl md:text-7xl font-extrabold leading-[1.1] text-primary-blue mb-2 tracking-tight">
+                        BELAJAR<br>
+                        <span class="text-accent-yellow">PAJAK</span><br>
+                        INDONESIA
+                    </h1>
+                    <h2 class="text-xl md:text-2xl font-semibold text-gray-800 mb-6">
+                        Belajar Pajak Jadi Lebih Mudah
+                    </h2>
+                    
+                    <p class="text-gray-600 text-lg mb-8 max-w-lg leading-relaxed">
+                        Channel edukasi perpajakan Indonesia berisi tutorial, panduan, tips, dan solusi pajak untuk perusahaan & individu.
+                    </p>
+                    
+                    <!-- Feature Pills -->
+                    <div class="flex flex-wrap gap-4 mb-8">
+                        <div class="flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-sm border border-gray-100">
+                            <i class="fa-regular fa-circle-check text-primary-blue"></i>
+                            <div class="flex flex-col">
+                                <span class="text-sm font-bold text-gray-800 leading-none">Praktis</span>
+                                <span class="text-xs text-gray-500">Mudah Dipahami</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-sm border border-gray-100">
+                            <i class="fa-regular fa-circle-check text-primary-blue"></i>
+                            <div class="flex flex-col">
+                                <span class="text-sm font-bold text-gray-800 leading-none">Lengkap</span>
+                                <span class="text-xs text-gray-500">Step by Step</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-sm border border-gray-100">
+                            <i class="fa-regular fa-circle-check text-primary-blue"></i>
+                            <div class="flex flex-col">
+                                <span class="text-sm font-bold text-gray-800 leading-none">Terpercaya</span>
+                                <span class="text-xs text-gray-500">Update Terbaru</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="flex flex-wrap gap-4 w-full sm:w-auto">
+                        <a href="#" class="bg-primary-blue hover:bg-primary-light text-white px-8 py-3 rounded-full font-bold flex items-center justify-center gap-2 transition-all shadow-md w-full sm:w-auto">
+                            <i class="fa-brands fa-youtube text-accent-red bg-white rounded-full p-1 text-xs"></i> Tonton di YouTube
+                        </a>
+                        <a href="#" class="bg-white hover:bg-gray-50 text-primary-blue border border-primary-blue px-8 py-3 rounded-full font-bold flex items-center justify-center gap-2 transition-all shadow-sm w-full sm:w-auto">
+                            <i class="fa-regular fa-comment-dots"></i> Hubungi Saya
+                        </a>
+                    </div>
+                </div>
+
+                <div class="relative w-full h-[500px] flex justify-center lg:justify-end items-end">
+                    <!-- Placeholder for the main person image -->
+                    <div class="absolute bottom-0 w-3/4 max-w-md h-full z-10 flex items-end justify-center">
+                        <!-- Using an image from the reference or a placeholder if actual image extraction isn't perfect -->
+                        <img src="https://placehold.co/400x500/0F3B8C/ffffff?text=Photo+Profil" alt="Profile" class="h-[90%] object-cover object-top rounded-t-3xl shadow-float">
+                        <!-- Simulate crossed arms pose roughly -->
+                        <div class="absolute bottom-0 w-full h-1/3 bg-gradient-to-t from-primary-blue/20 to-transparent"></div>
+                    </div>
+
+                    <!-- Floating Benefit Cards -->
+                    <div class="absolute right-0 top-10 flex flex-col gap-4 z-20 hidden sm:flex">
+                        <div class="bg-white p-3 rounded-xl shadow-float flex items-center gap-3 transform translate-x-4">
+                            <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center text-accent-green">
+                                <i class="fa-solid fa-check"></i>
+                            </div>
+                            <div>
+                                <div class="font-bold text-sm text-gray-800">Tutorial Pajak</div>
+                                <div class="text-xs text-gray-500">Lengkap & Praktis</div>
+                            </div>
+                        </div>
+                        <div class="bg-white p-3 rounded-xl shadow-float flex items-center gap-3 transform -translate-x-2">
+                            <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center text-accent-green">
+                                <i class="fa-solid fa-check"></i>
+                            </div>
+                            <div>
+                                <div class="font-bold text-sm text-gray-800">Panduan Step by Step</div>
+                                <div class="text-xs text-gray-500">Untuk Semua</div>
+                            </div>
+                        </div>
+                        <div class="bg-white p-3 rounded-xl shadow-float flex items-center gap-3 transform translate-x-6">
+                            <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center text-accent-green">
+                                <i class="fa-solid fa-check"></i>
+                            </div>
+                            <div>
+                                <div class="font-bold text-sm text-gray-800">Solusi Masalah Pajak</div>
+                                <div class="text-xs text-gray-500">Cepat & Akurat</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="max-w-6xl mx-auto relative z-20 mt-[-40px]">
+                <div class="bg-primary-blue rounded-full shadow-lg p-2 flex flex-col md:flex-row items-center justify-between text-white overflow-hidden">
+                    
+                    <div class="flex items-center gap-4 py-2 px-6 hover:bg-white/10 rounded-full transition-colors flex-1 w-full md:w-auto justify-center md:justify-start">
+                        <div class="w-10 h-10 rounded-full bg-accent-yellow flex items-center justify-center text-primary-blue text-lg flex-shrink-0">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+                        <div class="truncate">
+                            <div class="text-xs font-medium text-blue-200">Email</div>
+                            <div class="font-bold text-sm lg:text-base">indonesiabelajarpajak@gmail.com</div>
+                        </div>
+                    </div>
+                    
+                    <div class="hidden md:block w-px h-10 bg-white/20"></div>
+                    
+                    <div class="flex items-center gap-4 py-2 px-6 hover:bg-white/10 rounded-full transition-colors flex-1 w-full md:w-auto justify-center md:justify-start">
+                        <div class="w-10 h-10 rounded-full bg-accent-yellow flex items-center justify-center text-primary-blue text-lg flex-shrink-0">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+                        <div>
+                            <div class="text-xs font-medium text-blue-200">Ponsel / WhatsApp</div>
+                            <div class="font-bold text-sm lg:text-base">082112382970</div>
+                        </div>
+                    </div>
+                    
+                    <div class="hidden md:block w-px h-10 bg-white/20"></div>
+                    
+                    <div class="flex items-center gap-4 py-2 px-6 pr-4 hover:bg-white/10 rounded-full transition-colors flex-1 w-full md:w-auto justify-between">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-full bg-accent-yellow flex items-center justify-center text-primary-blue text-lg flex-shrink-0">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs font-medium text-blue-200">Channel</div>
+                                <div class="font-bold text-sm lg:text-base">Belajar Pajak Indonesia</div>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-chevron-right text-blue-300 ml-2 hidden lg:block"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+            <div class="max-w-6xl mx-auto text-center mb-16">
+                <h2 class="text-3xl font-bold text-primary-blue mb-4">Skema Solusi Pajak</h2>
+                <p class="text-gray-500 max-w-2xl mx-auto">Kami membantu Anda memahami dan menyelesaikan kewajiban pajak dengan tepat.</p>
+            </div>
+
+            <div class="max-w-6xl mx-auto relative">
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 text-center relative z-10">
+                    
+                    <!-- Step 1 -->
+                    <div class="relative flex flex-col items-center group">
+                        <div class="process-line lg:block hidden"></div>
+                        <div class="w-20 h-20 rounded-full bg-blue-50 flex items-center justify-center border-4 border-white shadow-md mb-4 relative z-10 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-clipboard-list text-3xl text-primary-blue"></i>
+                            <div class="absolute -bottom-2 w-6 h-6 rounded-full bg-primary-blue text-white text-xs font-bold flex items-center justify-center border-2 border-white">1</div>
+                        </div>
+                        <h3 class="font-bold text-gray-800 mb-2">Identifikasi Kebutuhan</h3>
+                        <p class="text-xs text-gray-500 px-2">Pahami jenis pajak yang Anda miliki</p>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="relative flex flex-col items-center group">
+                        <div class="process-line lg:block hidden"></div>
+                        <div class="w-20 h-20 rounded-full bg-orange-50 flex items-center justify-center border-4 border-white shadow-md mb-4 relative z-10 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-magnifying-glass-chart text-3xl text-orange-500"></i>
+                            <div class="absolute -bottom-2 w-6 h-6 rounded-full bg-primary-blue text-white text-xs font-bold flex items-center justify-center border-2 border-white">2</div>
+                        </div>
+                        <h3 class="font-bold text-gray-800 mb-2">Persiapan Data</h3>
+                        <p class="text-xs text-gray-500 px-2">Siapkan data & dokumen yang diperlukan</p>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="relative flex flex-col items-center group">
+                        <div class="process-line lg:block hidden"></div>
+                        <div class="w-20 h-20 rounded-full bg-blue-50 flex items-center justify-center border-4 border-white shadow-md mb-4 relative z-10 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-laptop-code text-3xl text-blue-500"></i>
+                            <div class="absolute -bottom-2 w-6 h-6 rounded-full bg-primary-blue text-white text-xs font-bold flex items-center justify-center border-2 border-white">3</div>
+                        </div>
+                        <h3 class="font-bold text-gray-800 mb-2">Proses & Tutorial</h3>
+                        <p class="text-xs text-gray-500 px-2">Ikuti langkah step by step</p>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="relative flex flex-col items-center group">
+                        <div class="process-line lg:block hidden"></div>
+                        <div class="w-20 h-20 rounded-full bg-green-50 flex items-center justify-center border-4 border-white shadow-md mb-4 relative z-10 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-file-signature text-3xl text-green-500"></i>
+                            <div class="absolute -bottom-2 w-6 h-6 rounded-full bg-primary-blue text-white text-xs font-bold flex items-center justify-center border-2 border-white">4</div>
+                        </div>
+                        <h3 class="font-bold text-gray-800 mb-2">Pelaporan</h3>
+                        <p class="text-xs text-gray-500 px-2">Lakukan pelaporan di sistem DJP</p>
+                    </div>
+
+                    <!-- Step 5 -->
+                    <div class="relative flex flex-col items-center group">
+                        <div class="process-line lg:block hidden"></div>
+                        <div class="w-20 h-20 rounded-full bg-purple-50 flex items-center justify-center border-4 border-white shadow-md mb-4 relative z-10 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-chart-line text-3xl text-purple-600"></i>
+                            <div class="absolute -bottom-2 w-6 h-6 rounded-full bg-primary-blue text-white text-xs font-bold flex items-center justify-center border-2 border-white">5</div>
+                        </div>
+                        <h3 class="font-bold text-gray-800 mb-2">Monitoring</h3>
+                        <p class="text-xs text-gray-500 px-2">Cek status & pastikan laporan diterima</p>
+                    </div>
+
+                    <!-- Step 6 -->
+                    <div class="relative flex flex-col items-center group">
+                        <div class="w-20 h-20 rounded-full bg-teal-50 flex items-center justify-center border-4 border-white shadow-md mb-4 relative z-10 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-shield-halved text-3xl text-teal-500"></i>
+                            <div class="absolute -bottom-2 w-6 h-6 rounded-full bg-primary-blue text-white text-xs font-bold flex items-center justify-center border-2 border-white">6</div>
+                        </div>
+                        <h3 class="font-bold text-gray-800 mb-2">Solusi & Evaluasi</h3>
+                        <p class="text-xs text-gray-500 px-2">Tips, solusi & update terbaru</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-16 px-4 sm:px-6 lg:px-8 bg-surface-gray">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-primary-blue">Topik Pembahasan</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+                    <!-- Card 1 -->
+                    <div class="bg-white rounded-2xl p-6 shadow-card hover:shadow-soft transition-shadow border border-gray-100 flex flex-col h-full group cursor-pointer">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center text-primary-blue text-2xl group-hover:scale-110 transition-transform">
+                                <i class="fa-regular fa-building"></i>
+                            </div>
+                            <h3 class="font-bold text-gray-800 leading-tight">Pajak Masa<br>Perusahaan</h3>
+                        </div>
+                        <ul class="space-y-3 text-sm text-gray-600 mb-4 flex-grow">
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-green-500 mt-1"></i> PPh 21</li>
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-green-500 mt-1"></i> PPh 22</li>
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-green-500 mt-1"></i> PPh 23</li>
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-green-500 mt-1"></i> PPh 25</li>
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-green-500 mt-1"></i> PPh 26</li>
+                        </ul>
+                        <div class="text-right text-gray-300 group-hover:text-primary-blue transition-colors">
+                            <i class="fa-solid fa-chevron-right"></i>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="bg-white rounded-2xl p-6 shadow-card hover:shadow-soft transition-shadow border border-gray-100 flex flex-col h-full group cursor-pointer">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="w-12 h-12 bg-orange-50 rounded-lg flex items-center justify-center text-orange-500 text-2xl group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-file-invoice-dollar"></i>
+                            </div>
+                            <h3 class="font-bold text-gray-800 leading-tight">PPN &<br>Faktur Pajak</h3>
+                        </div>
+                        <ul class="space-y-3 text-sm text-gray-600 mb-4 flex-grow">
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-green-500 mt-1"></i> Faktur Pajak</li>
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-green-500 mt-1"></i> SPT Masa PPN</li>
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-green-500 mt-1"></i> Pembetulan PPN</li>
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-green-500 mt-1"></i> Bukti Potong PPN</li>
+                        </ul>
+                        <div class="text-right text-gray-300 group-hover:text-primary-blue transition-colors">
+                            <i class="fa-solid fa-chevron-right"></i>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="bg-white rounded-2xl p-6 shadow-card hover:shadow-soft transition-shadow border border-gray-100 flex flex-col h-full group cursor-pointer">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center text-primary-blue text-2xl group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-city"></i>
+                            </div>
+                            <h3 class="font-bold text-gray-800 leading-tight">SPT<br>Tahunan Badan</h3>
+                        </div>
+                        <ul class="space-y-3 text-sm text-gray-600 mb-4 flex-grow">
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-green-500 mt-1"></i> Persiapan Data</li>
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-green-500 mt-1"></i> Koreksi Fiskal</li>
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-green-500 mt-1"></i> Hitung PPh Badan</li>
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-green-500 mt-1"></i> Lapor SPT Tahunan</li>
+                        </ul>
+                        <div class="text-right text-gray-300 group-hover:text-primary-blue transition-colors">
+                            <i class="fa-solid fa-chevron-right"></i>
+                        </div>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div class="bg-white rounded-2xl p-6 shadow-card hover:shadow-soft transition-shadow border border-gray-100 flex flex-col h-full group cursor-pointer">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="w-12 h-12 bg-green-50 rounded-lg flex items-center justify-center text-green-600 text-2xl group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-user-tie"></i>
+                            </div>
+                            <h3 class="font-bold text-gray-800 leading-tight">SPT Tahunan<br>OP</h3>
+                        </div>
+                        <ul class="space-y-3 text-sm text-gray-600 mb-4 flex-grow">
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-green-500 mt-1"></i> Karyawan</li>
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-green-500 mt-1"></i> Pengusaha</li>
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-green-500 mt-1"></i> Pelaporan Online</li>
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-green-500 mt-1"></i> Tips & Trik</li>
+                        </ul>
+                        <div class="text-right text-gray-300 group-hover:text-primary-blue transition-colors">
+                            <i class="fa-solid fa-chevron-right"></i>
+                        </div>
+                    </div>
+
+                    <!-- Card 5 -->
+                    <div class="bg-white rounded-2xl p-6 shadow-card hover:shadow-soft transition-shadow border border-gray-100 flex flex-col h-full group cursor-pointer">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="w-12 h-12 bg-purple-50 rounded-lg flex items-center justify-center text-purple-600 text-2xl group-hover:scale-110 transition-transform">
+                                <i class="fa-regular fa-lightbulb"></i>
+                            </div>
+                            <h3 class="font-bold text-gray-800 leading-tight">Tips & Solusi<br>&nbsp;</h3>
+                        </div>
+                        <ul class="space-y-3 text-sm text-gray-600 mb-4 flex-grow">
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-green-500 mt-1"></i> Masalah Umum</li>
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-green-500 mt-1"></i> Error Coretax</li>
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-green-500 mt-1"></i> Update Aturan</li>
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-green-500 mt-1"></i> Panduan Cepat</li>
+                        </ul>
+                        <div class="text-right text-gray-300 group-hover:text-primary-blue transition-colors">
+                            <i class="fa-solid fa-chevron-right"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-12 px-4 sm:px-6 lg:px-8 bg-surface-gray">
+            <div class="max-w-7xl mx-auto">
+                <div class="bg-banner rounded-3xl p-8 md:p-12 shadow-xl relative overflow-hidden flex flex-col lg:flex-row items-center justify-between gap-8">
+                    
+                    <!-- Decorative background elements -->
+                    <div class="absolute top-0 right-0 w-full h-full opacity-10 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiPgo8cmVjdCB3aWR0aD0iOCIgaGVpZ2h0PSI4IiBmaWxsPSIjZmZmIj48L3JlY3Q+CjxwYXRoIGQ9Ik0wIDBMOCA4Wk04IDBMMCA4WiIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjEiPjwvcGF0aD4KPC9zdmc+')]"></div>
+                    <div class="absolute -right-20 -bottom-20 w-64 h-64 bg-accent-yellow rounded-full filter blur-[100px] opacity-20"></div>
+                    
+                    <!-- Left: Profile & Text -->
+                    <div class="flex flex-col md:flex-row items-center md:items-start gap-6 relative z-10 w-full lg:w-3/5 text-center md:text-left">
+                        <img src="https://placehold.co/120x120/ffffff/0F3B8C?text=Profil" alt="Profile Thumbnail" class="w-24 h-24 md:w-32 md:h-32 rounded-full border-4 border-white shadow-lg object-cover">
+                        <div class="flex flex-col justify-center h-full pt-2">
+                            <h2 class="text-3xl md:text-4xl font-bold text-white mb-2">Belajar Pajak Indonesia</h2>
+                            <p class="text-accent-yellow font-semibold text-lg mb-4">Tutorial Pajak Praktis, Mudah Dipahami, dan Terpercaya</p>
+                            <p class="text-blue-100 text-sm mb-6">Subscribe sekarang dan jangan lewatkan update video terbaru!</p>
+                            
+                            <div class="flex items-center justify-center md:justify-start gap-4">
+                                <a href="#" class="bg-accent-red hover:bg-red-700 text-white px-6 py-2.5 rounded-full font-bold flex items-center gap-2 transition-colors shadow-md">
+                                    <i class="fa-brands fa-youtube text-lg"></i> Subscribe
+                                </a>
+                                <button class="w-10 h-10 rounded-full border border-white/30 text-white flex items-center justify-center hover:bg-white/10 transition-colors">
+                                    <i class="fa-regular fa-bell"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Illustrations -->
+                    <div class="relative z-10 w-full lg:w-2/5 flex justify-center items-center h-48 lg:h-auto">
+                        <!-- Play button icon floating -->
+                        <div class="absolute top-0 right-10 text-accent-red text-6xl drop-shadow-xl z-20 animate-bounce" style="animation-duration: 3s;">
+                            <i class="fa-brands fa-youtube"></i>
+                        </div>
+                        <!-- Coretax mockup placeholder -->
+                        <div class="bg-white rounded-lg p-2 shadow-2xl transform rotate-3 z-10 w-64 md:w-80">
+                            <div class="border border-gray-200 rounded p-2">
+                                <div class="flex items-center justify-between border-b pb-2 mb-2">
+                                    <span class="font-bold text-xs text-primary-blue">Coretax DJP</span>
+                                    <div class="flex gap-1">
+                                        <div class="w-2 h-2 rounded-full bg-red-400"></div>
+                                        <div class="w-2 h-2 rounded-full bg-yellow-400"></div>
+                                        <div class="w-2 h-2 rounded-full bg-green-400"></div>
+                                    </div>
+                                </div>
+                                <div class="space-y-2">
+                                    <div class="h-2 bg-gray-200 rounded w-3/4"></div>
+                                    <div class="h-2 bg-gray-200 rounded w-1/2"></div>
+                                    <div class="h-24 bg-gray-100 rounded mt-2 flex items-end gap-2 p-2">
+                                        <div class="w-full bg-blue-200 h-1/3 rounded-t"></div>
+                                        <div class="w-full bg-blue-300 h-2/3 rounded-t"></div>
+                                        <div class="w-full bg-primary-blue h-full rounded-t"></div>
+                                        <div class="w-full bg-accent-yellow h-1/2 rounded-t"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Notification bell floating -->
+                        <div class="absolute bottom-4 left-10 text-accent-yellow text-4xl drop-shadow-lg z-20">
+                            <i class="fa-solid fa-bell"></i>
+                        </div>
+                        <!-- Like button floating -->
+                        <div class="absolute top-10 left-0 bg-blue-500 text-white w-10 h-10 rounded-full flex items-center justify-center text-lg shadow-lg z-20">
+                            <i class="fa-solid fa-thumbs-up"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-surface-dark text-white pt-16 pb-8 border-t-4 border-primary-light">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                
+                <!-- About Column -->
+                <div>
+                    <h4 class="font-bold text-lg mb-6 text-white border-b border-gray-700 pb-2 inline-block">Tentang Channel</h4>
+                    <p class="text-gray-400 text-sm mb-6 leading-relaxed">
+                        Belajar Pajak Indonesia adalah channel edukasi perpajakan Indonesia yang membahas tutorial, panduan, tips, dan solusi pajak untuk perusahaan dan individu.
+                    </p>
+                    <div class="flex gap-3">
+                        <a href="#" class="w-8 h-8 rounded bg-accent-red flex items-center justify-center hover:bg-red-700 transition-colors">
+                            <i class="fa-brands fa-youtube text-white"></i>
+                        </a>
+                        <a href="#" class="w-8 h-8 rounded bg-blue-600 flex items-center justify-center hover:bg-blue-700 transition-colors">
+                            <i class="fa-brands fa-facebook-f text-white"></i>
+                        </a>
+                        <a href="#" class="w-8 h-8 rounded bg-green-500 flex items-center justify-center hover:bg-green-600 transition-colors">
+                            <i class="fa-brands fa-whatsapp text-white"></i>
+                        </a>
+                        <a href="#" class="w-8 h-8 rounded bg-blue-700 flex items-center justify-center hover:bg-blue-800 transition-colors">
+                            <i class="fa-brands fa-linkedin-in text-white"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Contact Column -->
+                <div>
+                    <h4 class="font-bold text-lg mb-6 text-white border-b border-gray-700 pb-2 inline-block">Kontak</h4>
+                    <ul class="space-y-4 text-sm text-gray-400">
+                        <li class="flex items-center gap-3">
+                            <i class="fa-regular fa-envelope text-gray-500"></i>
+                            <a href="mailto:indonesiabelajarpajak@gmail.com" class="hover:text-accent-yellow transition-colors">indonesiabelajarpajak@gmail.com</a>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-brands fa-whatsapp text-green-500"></i>
+                            <a href="tel:082112382970" class="hover:text-accent-yellow transition-colors">082112382970</a>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-location-dot text-gray-500"></i>
+                            <span>Indonesia</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-regular fa-clock text-gray-500"></i>
+                            <span>Online / Setiap Hari Update</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Quick Nav Column -->
+                <div>
+                    <h4 class="font-bold text-lg mb-6 text-white border-b border-gray-700 pb-2 inline-block">Navigasi Cepat</h4>
+                    <ul class="space-y-3 text-sm text-gray-400">
+                        <li><a href="#" class="flex items-center gap-2 hover:text-accent-yellow transition-colors"><i class="fa-solid fa-angle-right text-accent-yellow text-xs"></i> Beranda</a></li>
+                        <li><a href="#" class="flex items-center gap-2 hover:text-accent-yellow transition-colors"><i class="fa-solid fa-angle-right text-accent-yellow text-xs"></i> Tutorial</a></li>
+                        <li><a href="#" class="flex items-center gap-2 hover:text-accent-yellow transition-colors"><i class="fa-solid fa-angle-right text-accent-yellow text-xs"></i> Layanan</a></li>
+                        <li><a href="#" class="flex items-center gap-2 hover:text-accent-yellow transition-colors"><i class="fa-solid fa-angle-right text-accent-yellow text-xs"></i> Artikel</a></li>
+                        <li><a href="#" class="flex items-center gap-2 hover:text-accent-yellow transition-colors"><i class="fa-solid fa-angle-right text-accent-yellow text-xs"></i> Kontak Kami</a></li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter Column -->
+                <div>
+                    <h4 class="font-bold text-lg mb-6 text-white border-b border-gray-700 pb-2 inline-block">Newsletter</h4>
+                    <p class="text-sm text-gray-400 mb-4">Dapatkan tips & update pajak terbaru langsung ke email Anda.</p>
+                    <form class="flex" onsubmit="event.preventDefault();">
+                        <input type="email" placeholder="Masukkan email Anda" class="w-full px-4 py-2 rounded-l bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-accent-yellow text-sm" required>
+                        <button type="submit" class="bg-accent-yellow hover:bg-yellow-500 text-gray-900 px-4 py-2 rounded-r font-bold text-sm transition-colors">
+                            Kirim
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-8 text-center text-sm text-gray-500">
+                <p>&copy; 2026 Belajar Pajak Indonesia. Semua Hak Dilindungi.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
